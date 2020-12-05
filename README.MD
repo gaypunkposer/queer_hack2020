@@ -3,6 +3,6 @@
 ### To set up the project: 
 
 `npm install`
-#### To run the project: 
+### To run the project: 
 
 `npm run start`
