@@ -39,7 +39,7 @@ function create() {
     this.map = this.make.tilemap({
         key: "map"
     });
-    let tile = this.map.addTilesetImage("Tileset", "tiles");
+    let tile = this.map.addTilesetImage("1bittest", "tiles");
     this.layer = this.map.createStaticLayer("Tile Layer 1", tile);
     convoTxt = this.make.text({
         x: 0,
