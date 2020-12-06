@@ -11,7 +11,7 @@ var convo = {
     lineArray: "",
     splitLine: "",
     currentLine: "",
-    currentLineIndex: 0,
+    lineIndex: 0,
     charIndex: 0
 };
 
@@ -68,9 +68,9 @@ function update() {
 
 function startConvo(currentConvo) {
     convo.lineArray = currentConvo;
-    convo.currentLineIndex = 0;
+    convo.lineIndex = 0;
     convo.charIndex = 0;
-    convo.splitLine = convo.lineArray["line" + convo.currentLineIndex].split(""); //splits into chars
+    convo.splitLine = convo.lineArray["line" + convo.lineIndex].split(""); //splits into chars
     convoTxt.setText("");
     this.time.delayedCall(charDelay, nextChar, [], this); //after a delay, calls nextChar
 }
@@ -79,7 +79,8 @@ function nextChar() {
     convoTxt.setText(convoTxt.text + convo.splitLine[convo.charIndex]); //concatenates the next char to the end of the current display
     convo.charIndex++;
     if (convo.charIndex >= convo.splitLine.length) {
-        if (convo.currentLineIndex < convo.lineArray.length) {
+        convo.lineIndex++;
+        if (convo.lineIndex < convo.lineArray.length) {
             this.time.delayedCall(lineDelay, nextLine, [], this);
         }
         return;
@@ -88,9 +89,8 @@ function nextChar() {
 }
 
 function nextLine() {
-    convo.currentLineIndex++;
     convo.charIndex = 0;
-    convo.splitLine = convo.lineArray["line" + convo.currentLineIndex].split(""); //splits into chars
+    convo.splitLine = convo.lineArray["line" + convo.lineIndex].split(""); //splits into chars
     convoTxt.setText("");
     this.time.delayedCall(charDelay, nextChar, [], this); //after a delay, calls nextChar
 }
